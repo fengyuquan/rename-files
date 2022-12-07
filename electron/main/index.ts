@@ -19,8 +19,8 @@ let win: BrowserWindow | null = null
 
 function createWindow() {
   win = new BrowserWindow({
-    width: 1200,
-    height: 720,
+    minWidth: 600,
+    minHeight: 800,
     title: 'rename',
     icon: join(process.env.PUBLIC, 'favicon.ico'),
     webPreferences: {

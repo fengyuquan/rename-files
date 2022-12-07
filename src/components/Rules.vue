@@ -1,6 +1,6 @@
 <template>
-  <div class="container p-6 mx-auto">
-    <div class="grid lg:grid-cols-3 gap-6 lg:gap-x-12">
+  <div class="w-full p-6 mx-auto">
+    <div>
       <div class="mb-6 lg:mb-0">
         <div class="block rounded-lg shadow-lg h-full">
           <div class="p-2 border-b flex content-center justify-between">
@@ -32,7 +32,9 @@
             </button>
           </div>
           <div class="p-4">
-            <ol class="text-xs grid grid-cols-2 gap-x-8">
+            <ol
+              class="text-xs grid grid-cols-2 gap-x-8 lg:grid-cols-3 gap-6 lg:gap-x-12"
+            >
               <li
                 class="mb-1 flex items-center"
                 v-for="item in filesStore.rules"

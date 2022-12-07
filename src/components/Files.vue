@@ -1,6 +1,6 @@
 <template>
-  <div class="container p-6 mx-auto overflow-hidden dark-light">
-    <div class="grid lg:grid-cols-3 gap-6 lg:gap-x-12">
+  <div class="w-full p-6 mx-auto overflow-hidden dark-light">
+    <div>
       <div class="mb-4 lg:mb-0">
         <div class="block rounded-lg shadow-lg h-full">
           <div class="p-2 border-b flex content-center justify-between">
@@ -52,7 +52,7 @@
                 </Tab>
               </TabList>
 
-              <TabPanels class="mt-2 min-h-[145px]">
+              <TabPanels class="mt-2 min-h-[45px]">
                 <!-- 1 -->
                 <TabPanel
                   :class="[
