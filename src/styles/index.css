@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background: #333;
+        color: white;
+    }
+
+    .dark-light {
+        background: #333;
+        color: white;
+    }
+
+    .divide-y> :not([hidden])~ :not([hidden]) {
+        border-color: rgb(85, 85, 85);
+    }
+
+    .border-b {
+        border-color: rgb(85, 85, 85);
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    body {
+        background: #fbfbfb;
+        color: black;
+    }
+
+    .dark-light {
+        background: #fbfbfb;
+        color: black;
+    }
+
+}
