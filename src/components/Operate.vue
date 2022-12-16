@@ -10,12 +10,9 @@
     <div class="grid gap-4 grid-cols-4">
       <!-- 选择文件 -->
       <div
-        class="relative rounded-lg shadow-lg h-full cursor-pointer my-1"
+        class="relative rounded-lg shadow-lg h-full cursor-pointer my-1 hover-slider"
         @click="selectFolder"
       >
-        <div
-          class="absolute top-0 right-0 bottom-0 left-0 w-full h-full overflow-hidden opacity-0 transition duration-300 ease-in-out bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:opacity-70"
-        ></div>
         <div class="flex justify-center">
           <div class="content-between">
             <img src="../assets/imgs/dir.gif" class="rounded mx-auto" />
@@ -26,12 +23,9 @@
 
       <!-- 添加规则 -->
       <div
-        class="relative rounded-lg shadow-lg h-full cursor-pointer my-1"
+        class="relative rounded-lg shadow-lg h-full cursor-pointer my-1 hover-slider"
         @click="addRule"
       >
-        <div
-          class="absolute top-0 right-0 bottom-0 left-0 w-full h-full overflow-hidden opacity-0 transition duration-300 ease-in-out bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:opacity-70"
-        ></div>
         <div class="flex justify-center">
           <div class="content-between">
             <img src="../assets/imgs/rules.gif" class="rounded mx-auto" />
@@ -42,12 +36,9 @@
 
       <!-- 预览变化 -->
       <div
-        class="relative rounded-lg shadow-lg h-full cursor-pointer my-1"
+        class="relative rounded-lg shadow-lg h-full cursor-pointer my-1 hover-slider"
         @click="applyRules"
       >
-        <div
-          class="absolute top-0 right-0 bottom-0 left-0 w-full h-full overflow-hidden opacity-0 transition duration-300 ease-in-out bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:opacity-70"
-        ></div>
         <div class="flex justify-center">
           <div class="content-between">
             <img src="../assets/imgs/check.gif" class="rounded mx-auto" />
@@ -58,12 +49,9 @@
 
       <!-- 应用修改 -->
       <div
-        class="relative rounded-lg shadow-lg h-full cursor-pointer my-1"
+        class="relative rounded-lg shadow-lg h-full cursor-pointer my-1 hover-slider"
         @click="modifyFiles"
       >
-        <div
-          class="absolute top-0 right-0 bottom-0 left-0 w-full h-full overflow-hidden opacity-0 transition duration-300 ease-in-out bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:opacity-70"
-        ></div>
         <div class="flex justify-center">
           <div class="content-between">
             <img src="../assets/imgs/done.gif" class="rounded mx-auto" />
@@ -224,4 +212,33 @@ async function modifyFiles() {
 }
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.hover-slider {
+  position: relative;
+  transition: all 0.25s;
+  &:after {
+    content: '';
+    background: linear-gradient(
+      to right,
+      $theme-color 0%,
+      $theme-color 50%,
+      #fff 50%,
+      #fff 100%
+    );
+    background-position: 100% 0;
+    background-size: 200% 100%;
+    width: 100%;
+    height: 2px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    transition: all 0.5s;
+  }
+  &:hover {
+    transform: scale(1.05);
+    &:after {
+      background-position: 0 0;
+    }
+  }
+}
+</style>

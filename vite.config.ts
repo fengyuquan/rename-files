@@ -71,4 +71,11 @@ export default defineConfig({
       })()
     : undefined,
   clearScreen: false,
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: '@import "./src/styles/var.scss";',
+      },
+    },
+  },
 })
