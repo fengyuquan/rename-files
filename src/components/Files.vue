@@ -31,88 +31,99 @@
               </svg>
             </button>
           </div>
-          <div class="p-4">
-            <TabGroup>
-              <TabList class="flex space-x-1 rounded-xl bg-blue-900/10 p-1">
-                <Tab
-                  v-for="category in categories"
-                  as="template"
-                  :key="category"
-                  v-slot="{ selected }"
+          <div class="relative p-1">
+            <div class="container">
+              <div class="tabs">
+                <input
+                  type="radio"
+                  id="radio-1"
+                  name="tabs"
+                  checked
+                  @click="changeTab($event)"
+                />
+                <label class="tab" for="radio-1"
+                  >两者<span class="notification">{{
+                    filesName.length
+                  }}</span></label
                 >
-                  <button
-                    :class="[
-                      'w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-blue-700',
-                      'ring-white/50 ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2',
-                      selected ? ' shadow' : 'hover:/[0.12] hover:text-white',
-                    ]"
-                  >
-                    {{ category }}
-                  </button>
-                </Tab>
-              </TabList>
+                <input
+                  type="radio"
+                  id="radio-2"
+                  name="tabs"
+                  @click="changeTab($event)"
+                />
+                <label class="tab" for="radio-2">修改前</label>
+                <input
+                  type="radio"
+                  id="radio-3"
+                  name="tabs"
+                  @click="changeTab($event)"
+                />
+                <label class="tab" for="radio-3">修改后</label>
+                <span class="glider"></span>
+              </div>
 
-              <TabPanels class="mt-2 min-h-[45px]">
-                <!-- 1 -->
-                <TabPanel
-                  :class="[
-                    'rounded-xl  p-3',
-                    'ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2',
-                  ]"
-                >
-                  <table class="w-full">
-                    <tr
-                      class="transition duration-300 ease-in-out hover:bg-gray-100 py-4 w-full"
-                      v-for="item in filesName"
-                      :key="item[0]"
-                    >
-                      <td class="text-sm font-light px-6 py-1 border-b">
-                        <p>{{ item[0] }}</p>
-                        <p>{{ item[1] }}</p>
-                      </td>
-                    </tr>
-                  </table>
-                </TabPanel>
-                <!-- 2 -->
-                <TabPanel
-                  :class="[
-                    'rounded-xl  p-3',
-                    'ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2',
-                  ]"
-                >
-                  <table class="w-full">
-                    <tr
-                      class="transition duration-300 ease-in-out hover:bg-gray-100 py-4 w-full"
-                      v-for="item in filesName"
-                      :key="item[0]"
-                    >
-                      <td class="text-sm font-light px-6 py-1 border-b">
-                        <p>{{ item[0] }}</p>
-                      </td>
-                    </tr>
-                  </table>
-                </TabPanel>
-                <!-- 3 -->
-                <TabPanel
-                  :class="[
-                    'rounded-xl  p-3',
-                    'ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2',
-                  ]"
-                >
-                  <table class="w-full">
-                    <tr
-                      class="transition duration-300 ease-in-out hover:bg-gray-100 py-4 w-full"
-                      v-for="item in filesName"
-                      :key="item[0]"
-                    >
-                      <td class="text-sm font-light px-6 py-1 border-b">
-                        <p>{{ item[1] }}</p>
-                      </td>
-                    </tr>
-                  </table>
-                </TabPanel>
-              </TabPanels>
-            </TabGroup>
+              <ul class="tabs__contents">
+                <li>
+                  <div
+                    class="tabs__content"
+                    :class="{ active: activeIdx === 0 }"
+                  >
+                    <table class="w-full">
+                      <tr
+                        class="transition duration-300 ease-in-out hover:bg-gray-100 py-4 w-full"
+                        v-for="item in filesName"
+                        :key="item[0]"
+                      >
+                        <td class="text-sm font-light px-6 py-1 border-b">
+                          <p :class="{ 'delete-line': item[1] }">
+                            {{ item[0] }}
+                          </p>
+                          <p>{{ item[1] }}</p>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </li>
+                <li>
+                  <div
+                    class="tabs__content"
+                    :class="{ active: activeIdx === 1 }"
+                  >
+                    <table class="w-full">
+                      <tr
+                        class="transition duration-300 ease-in-out hover:bg-gray-100 py-4 w-full"
+                        v-for="item in filesName"
+                        :key="item[0]"
+                      >
+                        <td class="text-sm font-light px-6 py-1 border-b">
+                          <p>{{ item[0] }}</p>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </li>
+                <li>
+                  <div
+                    class="tabs__content"
+                    :class="{ active: activeIdx === 2 }"
+                  >
+                    <table class="w-full">
+                      <tr
+                        class="transition duration-300 ease-in-out hover:bg-gray-100 py-4 w-full"
+                        v-for="item in filesName"
+                        :key="item[0]"
+                      >
+                        <td class="text-sm font-light px-6 py-1 border-b">
+                          <p>{{ item[1] }}</p>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <!--container-->
           </div>
         </div>
       </div>
@@ -122,7 +133,6 @@
 
 <script setup lang="ts">
 import path from 'path'
-import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue'
 import { ref, watch } from 'vue'
 import useFilesStore from '../stores/files'
 
@@ -135,16 +145,174 @@ watch(
     filesName.value = filesStore.paths.map((e) => {
       const p0 = path.basename(e[0])
       const p1 = path.basename(e[1])
-      console.log(p0, '-----', p1)
       return [p0, p1]
     })
   }
 )
 
-const categories = ref(['两者', '修改前', '修改后'])
 function cleanPaths() {
   filesStore.cleanPaths()
 }
+
+// tab menu
+const activeIdx = ref(0)
+interface myTarget extends EventTarget {
+  id: string
+}
+function changeTab(e: MouseEvent) {
+  const { id } = e.target as myTarget
+  switch (id) {
+    case 'radio-1':
+      activeIdx.value = 0
+      break
+    case 'radio-2':
+      activeIdx.value = 1
+      break
+    case 'radio-3':
+      activeIdx.value = 2
+      break
+    default:
+      activeIdx.value = 0
+  }
+}
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+$primary-color: #185ee0;
+$secondary-color: #e6eef9;
+
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+.container {
+  padding: 0 1rem;
+  margin: auto;
+}
+.tabs {
+  width: 600px;
+  margin: auto;
+  display: flex;
+  position: relative;
+  align-items: center;
+  background-color: #fff;
+  box-shadow: 0 0 1px 0 rgba($theme-color, 0.15),
+    0 6px 12px 0 rgba(rgb(87, 86, 86), 0.25);
+  padding: 0.25rem;
+  border-radius: 99px; // just a high number to create pill effect
+  * {
+    z-index: 2;
+  }
+}
+
+input[type='radio'] {
+  display: none;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  width: 200px;
+  font-size: 1.2em;
+  font-weight: 300;
+  border-radius: 99px;
+  cursor: pointer;
+  transition: color 0.15s ease-in;
+}
+
+.notification {
+  position: absolute;
+  left: 145px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  margin-left: 0.75rem;
+  border-radius: 50%;
+  background-color: $secondary-color;
+  transition: 0.15s ease-in;
+}
+
+input[type='radio'] {
+  &:checked {
+    & + label {
+      color: $theme-color;
+      & > .notification {
+        background-color: $theme-color;
+        color: #fff;
+      }
+    }
+  }
+}
+
+input[id='radio-1'] {
+  &:checked {
+    & ~ .glider {
+      transform: translateX(0);
+    }
+  }
+}
+
+input[id='radio-2'] {
+  &:checked {
+    & ~ .glider {
+      transform: translateX(100%);
+    }
+  }
+}
+
+input[id='radio-3'] {
+  &:checked {
+    & ~ .glider {
+      transform: translateX(200%);
+    }
+  }
+}
+
+.glider {
+  position: absolute;
+  display: flex;
+  height: 44px;
+  width: 200px;
+  background-color: $secondary-color;
+  z-index: 1;
+  border-radius: 99px;
+  transition: 0.25s ease-out;
+}
+
+.tabs__contents {
+  padding: 40px 0;
+  background: white;
+  list-style-type: none;
+  transition: 1s;
+
+  .tabs__content {
+    display: none;
+    min-height: 200px;
+    font-weight: 300;
+    line-height: 1.8;
+    opacity: 0;
+    transform: translateY(-2%);
+    animation: fadeIn 0.5s forwards;
+
+    &.active {
+      display: block;
+    }
+  }
+}
+
+.delete-line {
+  text-decoration: line-through;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>
