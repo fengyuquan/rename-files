@@ -69,19 +69,61 @@
                     class="tabs__content"
                     :class="{ active: activeIdx === 0 }"
                   >
-                    <table class="w-full">
-                      <tr
-                        class="transition duration-300 ease-in-out hover:bg-gray-100 py-4 w-full"
-                        v-for="item in filesName"
-                        :key="item[0]"
-                      >
-                        <td class="text-sm font-light px-6 py-1 border-b">
-                          <p :class="{ 'delete-line': item[1] }">
-                            {{ item[0] }}
-                          </p>
-                          <p>{{ item[1] }}</p>
-                        </td>
-                      </tr>
+                    <table class="w-full table-hover responsive nowrap">
+                      <thead @click="togglePathSort">
+                        <tr>
+                          <th
+                            class="flex items-center cursor-pointer px-6 py-1"
+                          >
+                            File Name
+                            <svg
+                              v-show="!isUp"
+                              class="w-4 h-3 ml-1"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="1"
+                                d="M19 13l-7 7-7-7m14-8l-7 7-7-7"
+                              ></path>
+                            </svg>
+
+                            <svg
+                              v-show="isUp"
+                              class="w-4 h-3 ml-1"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="1"
+                                d="M5 11l7-7 7 7M5 19l7-7 7 7"
+                              ></path>
+                            </svg>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr
+                          class="transition duration-300 ease-in-out hover:bg-gray-100 py-4 w-full"
+                          v-for="item in filesName"
+                          :key="item[0]"
+                        >
+                          <td class="text-sm font-light px-6 py-1 border-b">
+                            <p :class="{ 'delete-line': item[1] }">
+                              {{ item[0] }}
+                            </p>
+                            <p>{{ item[1] }}</p>
+                          </td>
+                        </tr>
+                      </tbody>
                     </table>
                   </div>
                 </li>
@@ -90,16 +132,58 @@
                     class="tabs__content"
                     :class="{ active: activeIdx === 1 }"
                   >
-                    <table class="w-full">
-                      <tr
-                        class="transition duration-300 ease-in-out hover:bg-gray-100 py-4 w-full"
-                        v-for="item in filesName"
-                        :key="item[0]"
-                      >
-                        <td class="text-sm font-light px-6 py-1 border-b">
-                          <p>{{ item[0] }}</p>
-                        </td>
-                      </tr>
+                    <table class="w-full table-hover responsive nowrap">
+                      <thead @click="togglePathSort">
+                        <tr>
+                          <th
+                            class="flex items-center cursor-pointer px-6 py-1"
+                          >
+                            File Name
+                            <svg
+                              v-show="!isUp"
+                              class="w-4 h-3 ml-1"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="1"
+                                d="M19 13l-7 7-7-7m14-8l-7 7-7-7"
+                              ></path>
+                            </svg>
+
+                            <svg
+                              v-show="isUp"
+                              class="w-4 h-3 ml-1"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="1"
+                                d="M5 11l7-7 7 7M5 19l7-7 7 7"
+                              ></path>
+                            </svg>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr
+                          class="transition duration-300 ease-in-out hover:bg-gray-100 py-4 w-full"
+                          v-for="item in filesName"
+                          :key="item[0]"
+                        >
+                          <td class="text-sm font-light px-6 py-1 border-b">
+                            <p>{{ item[0] }}</p>
+                          </td>
+                        </tr>
+                      </tbody>
                     </table>
                   </div>
                 </li>
@@ -108,16 +192,58 @@
                     class="tabs__content"
                     :class="{ active: activeIdx === 2 }"
                   >
-                    <table class="w-full">
-                      <tr
-                        class="transition duration-300 ease-in-out hover:bg-gray-100 py-4 w-full"
-                        v-for="item in filesName"
-                        :key="item[0]"
-                      >
-                        <td class="text-sm font-light px-6 py-1 border-b">
-                          <p>{{ item[1] }}</p>
-                        </td>
-                      </tr>
+                    <table class="w-full table-hover responsive nowrap">
+                      <thead @click="togglePathSort">
+                        <tr>
+                          <th
+                            class="flex items-center cursor-pointer px-6 py-1"
+                          >
+                            File Name
+                            <svg
+                              v-show="!isUp"
+                              class="w-4 h-3 ml-1"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="1"
+                                d="M19 13l-7 7-7-7m14-8l-7 7-7-7"
+                              ></path>
+                            </svg>
+
+                            <svg
+                              v-show="isUp"
+                              class="w-4 h-3 ml-1"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="1"
+                                d="M5 11l7-7 7 7M5 19l7-7 7 7"
+                              ></path>
+                            </svg>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr
+                          class="transition duration-300 ease-in-out hover:bg-gray-100 py-4 w-full"
+                          v-for="item in filesName"
+                          :key="item[0]"
+                        >
+                          <td class="text-sm font-light px-6 py-1 border-b">
+                            <p>{{ item[1] }}</p>
+                          </td>
+                        </tr>
+                      </tbody>
                     </table>
                   </div>
                 </li>
@@ -147,11 +273,25 @@ watch(
       const p1 = path.basename(e[1])
       return [p0, p1]
     })
+    if (isUp) {
+      filesName.value.sort((a, b) => a[0].localeCompare(b[0]))
+    }
   }
 )
 
 function cleanPaths() {
   filesStore.cleanPaths()
+}
+
+// filenames sort
+const isUp = ref(true)
+function togglePathSort() {
+  isUp.value = !isUp.value
+  if (isUp.value) {
+    filesName.value = filesName.value.sort((a, b) => a[0].localeCompare(b[0]))
+  } else {
+    filesName.value = filesName.value.sort((a, b) => -a[0].localeCompare(b[0]))
+  }
 }
 
 // tab menu
@@ -314,5 +454,12 @@ input[id='radio-3'] {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+th {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  user-select: none;
 }
 </style>
