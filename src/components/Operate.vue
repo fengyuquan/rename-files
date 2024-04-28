@@ -146,7 +146,16 @@ function applyRules() {
       // 先判断newVal是否为空，如果不为空，就在之前的基础上去修改
       if (rule.name === 'r') {
         newVal = newVal || oldVal
-        newVal = newVal.replaceAll(rule.oldVal, rule.newVal || '')
+        // debugger
+        if (!rule.oldVal.startsWith('/') || !rule.oldVal.endsWith('/')) {
+          newVal = newVal.replaceAll(rule.oldVal, rule.newVal || '')
+        } else {
+          const trimmedOldVal = rule.oldVal.slice(1, -1); // Remove the first and last '/' characters
+          // 使用正则表达式进行替换
+          const regex = new RegExp(trimmedOldVal, 'g');
+          // const regex = new RegExp(rule.oldVal, 'g') // 假设 rule.oldVal 是正则表达式的字符串形式
+          newVal = newVal.replace(regex, rule.newVal || '')
+        }
       } else if (rule.name === 'addPre') {
         // 增加前缀
         newVal = newVal || oldVal
